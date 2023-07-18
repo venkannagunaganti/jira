@@ -17,7 +17,7 @@ class LogFile:
             lines=file.readlines()
             file.close()
             line=lines[line_number-1]
-            print(line)
+            print(line+'')
 
 class Error:
     #funtion to print error message

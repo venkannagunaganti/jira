@@ -1,16 +1,26 @@
-import  status
-import inspect
+
+from datetime import datetime
+from pathlib import Path
+
+
 class LogFile:
     #writing to the log file
-
+    path = 'C:/Users/vgunaganti/PycharmProjects/jira/file.txt'
+    msg=''
+    with open(path,'w')as file:
+        file.write(msg)
     @staticmethod
-    def write_to_log_file(path,msg,line_number):
+    def write_to_log_file(msg,line_number):
+        # msg = ''
+        # with open(path, 'w') as file:
+        #     file.write(msg)
+        p = Path(LogFile.path)
+        file_name = p.name
+        time_stamp = datetime.fromtimestamp(p.stat().st_mtime).isoformat()
 
 
-        with open(path,'a+') as file:
-
-
-            file.write(status.file_name+' '+msg+' '+status.time_stamp+' '+'\n')
+        with open(LogFile.path,'a+') as file:
+            file.write(time_stamp+' '+str(line_number)+' '+file_name+' '+msg+'\n')
     @staticmethod
     def print_line(path,line_number):
         with open(path,'r') as file:
@@ -18,32 +28,31 @@ class LogFile:
             file.close()
             line=lines[line_number-1]
             print(line+'')
-
+class Crititcal:
+    # function to write critical msg
+    @staticmethod
+    def critical(msg,line_number):
+        LogFile.write_to_log_file(msg,line_number)
+class Debug:
+    @staticmethod
+    def debug(msg,line_number):
+        LogFile.write_to_log_file(msg,line_number)
 class Error:
     #funtion to print error message
     @staticmethod
-    def err(path,msg,line_number):
-        LogFile.write_to_log_file(path,msg,line_number)
+    def err(msg,line_number):
+        LogFile.write_to_log_file(msg,line_number)
 
 class Warning:
     #function to print warning message
     @staticmethod
-    def warn(path,msg,line_number):
-        LogFile.write_to_log_file(path,msg,line_number)
+    def warn(msg,line_number):
+        LogFile.write_to_log_file(msg,line_number)
 
 class Information:
     #function to print information
     @staticmethod
-    def info(path,msg,line_number):
-        LogFile.write_to_log_file(path,msg,line_number)
+    def info(msg,line_number):
+        LogFile.write_to_log_file(msg,line_number)
 
-error=Error()
-warning=Warning()
-information=Information()
-error_message=status.error_message
-warning_message=status.warning_message
-info=status.info
-error.err(status.path,error_message,status.line_number)
-warning.warn(status.path,warning_message,status.line_number)
-information.info(status.path,info,status.line_number)
-LogFile.print_line(status.path,status.line_number)
+

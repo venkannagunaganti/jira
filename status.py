@@ -1,13 +1,23 @@
-from pathlib import Path
-from datetime import datetime
-msg=''
-path='C:/Users/vgunaganti/PycharmProjects/jira/file.txt'
-with open(path,'w') as file:
-    file.write(msg)
-line_number=3
-error_message="this is an error message"
-warning_message="this is warning message"
-info="this is info"
-p=Path(path)
-file_name=p.name
-time_stamp=datetime.fromtimestamp(p.stat().st_mtime).isoformat()
+import JiraTask
+
+critical_msg="CRITICAL:the internet is not working"
+debug_msg="DEBUG:This is just a harmless debug message"
+error_message="ERROR:this is an error message"
+warning_message="WARNING:this is warning message"
+info="INFO:this is info"
+file=JiraTask.LogFile.path
+line_number=1
+
+critical=JiraTask.Crititcal()
+debug=JiraTask.Debug()
+error=JiraTask.Error()
+warning=JiraTask.Warning()
+information=JiraTask.Information()
+critical.critical(critical_msg,line_number)
+debug.debug(debug_msg,line_number)
+information.info(info,line_number)
+warning.warn(warning_message,line_number)
+error.err(error_message,line_number)
+
+
+# LogFile.print_line(status.path,status.line_number)

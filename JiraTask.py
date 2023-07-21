@@ -1,49 +1,37 @@
 from datetime import datetime
 from pathlib import Path
+import Message
 class LogFile:
 #writing to the log file function
   path = 'C:/Users/vgunaganti/PycharmProjects/jira/file.txt'
+  p = Path(path)
+  time_stamp = datetime.fromtimestamp(p.stat().st_mtime).isoformat()
   msg = ''
   with open(path, 'w') as file:
     file.write(msg)
     @staticmethod
-    def write_to_log_file(msg,line_number):
-        p = Path(LogFile.path)
-        file_name = p.name
-        time_stamp = datetime.fromtimestamp(p.stat().st_mtime).isoformat()
-        with open(LogFile.path,'a+') as file:
-            file.write(time_stamp+' '+str(line_number)+' '+file_name+' '+msg+'\n')
-    @staticmethod
-    def print_line(path,line_number):
-        with open(path,'r') as file:
-            lines=file.readlines()
-            file.close()
-            line=lines[line_number-1]
-            print(line+'')
-class Crititcal:
-# function to write critical msg
-    @staticmethod
-    def critical(msg,line_number):
-        LogFile.write_to_log_file(msg,line_number)
-class Debug:
-    @staticmethod
-    def debug(msg,line_number):
-        LogFile.write_to_log_file(msg,line_number)
-class Error:
-#funtion to pass error message
-    @staticmethod
-    def err(msg,line_number):
-        LogFile.write_to_log_file(msg,line_number)
-class Warning:
-#function to pass warning message
-    @staticmethod
-    def warn(msg,line_number):
-        LogFile.write_to_log_file(msg,line_number)
+    def write_to_log_file(file_name,msg,line_number):
 
-class Information:
-#function to pass information
-    @staticmethod
-    def info(msg,line_number):
-        LogFile.write_to_log_file(msg,line_number)
+        with open(LogFile.path,'a+') as file:
+
+            file.write(LogFile.time_stamp+' '+str(file_name)+':'+str(line_number)+' '+msg+'\n')
+def msg(file_name,msg,line_no):
+
+
+    match msg:
+        case Message.critical_msg:
+            LogFile.write_to_log_file(file_name,Message.critical_msg,line_no)
+        case Message.debug_msg:
+            LogFile.write_to_log_file(file_name,Message.debug_msg,line_no)
+        case Message.warning_message:
+            LogFile.write_to_log_file(file_name,Message.warning_message,line_no)
+        case Message.info:
+            LogFile.write_to_log_file(file_name,Message.info,line_no)
+        case Message.error_message:
+            LogFile.write_to_log_file(file_name,Message.error_message,line_no)
+        case Message.Display:
+            print(f"{LogFile.time_stamp} {file_name}:{line_no} {Message.Display}")
+
+
 
 

@@ -14,10 +14,11 @@ class LogFile:
 
         with open(LogFile.path,'a+') as file:
 
-            file.write(LogFile.time_stamp+' '+str(file_name)+':'+str(line_number)+' '+msg+'\n')
+            file.write(f"{LogFile.time_stamp} {file_name}:{line_number} {msg}\n")
+@staticmethod
 def msg(file_name,msg,line_no):
 
-
+   for i in range(1):
     match msg:
         case Message.critical_msg:
             LogFile.write_to_log_file(file_name,Message.critical_msg,line_no)
@@ -31,6 +32,9 @@ def msg(file_name,msg,line_no):
             LogFile.write_to_log_file(file_name,Message.error_message,line_no)
         case Message.Display:
             print(f"{LogFile.time_stamp} {file_name}:{line_no} {Message.Display}")
+
+        case unknown_command:
+            print(f"invalid message:{unknown_command} at lineno:{line_no}")
 
 
 

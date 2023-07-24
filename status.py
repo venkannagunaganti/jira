@@ -14,8 +14,7 @@ def line_num():
 #functions calling
 JiraTask.msg(file_name,Message.critical_msg,line_num())
 JiraTask.msg(file_name,Message.debug_msg,line_num())
-JiraTask.msg(file_name,"Message.info",line_num())
-JiraTask.msg(file_name,Message.warning_message,line_num())
+JiraTask.msg(file_name,"Message.warning_message",line_num())
 JiraTask.msg(file_name,Message.info,line_num())
 JiraTask.msg(file_name,Message.error_message,line_num())
 JiraTask.msg(file_name,Message.Display,line_num())

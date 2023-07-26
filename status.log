@@ -1,0 +1,5 @@
+2023-07-26T17:59:00.432731 status.py:17 CRITICAL:the internet is not working
+2023-07-26T17:59:00.432731 status.py:19 DEBUG:This is just a harmless debug message
+2023-07-26T17:59:00.432731 status.py:21 WARNING:this is warning message
+2023-07-26T17:59:00.432731 status.py:23 INFO:this is info
+2023-07-26T17:59:00.432731 status.py:25 ERROR:this is an error message

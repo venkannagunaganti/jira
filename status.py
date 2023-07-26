@@ -3,8 +3,9 @@ import Message
 import inspect
 import os
 #messages
-path="C:/Users/vgunaganti/PycharmProjects/jira/status.py"
+path=os.path.abspath(__file__)
 file_name=os.path.basename(path)
+
 @staticmethod
 def line_num():
     file=inspect.currentframe()
@@ -12,13 +13,13 @@ def line_num():
     return i.lineno
 
 #functions calling
-JiraTask.msg(file_name,Message.critical_msg,line_num())
-JiraTask.msg(file_name,Message.debug_msg,line_num())
-JiraTask.msg(file_name,"Message.warning_message",line_num())
-JiraTask.msg(file_name,Message.info,line_num())
-JiraTask.msg(file_name,Message.error_message,line_num())
-JiraTask.msg(file_name,Message.Display,line_num())
-
+JiraTask.LogFile.create_file(file_name)
+JiraTask.msg(file_name,line_num(),Message.critical_type,Message.critical)
+JiraTask.msg(file_name,line_num(),Message.debug_type,Message.debug)
+JiraTask.msg(file_name,line_num(),Message.warning_type,Message.warning)
+JiraTask.msg(file_name,line_num(),Message.info_type,Message.info)
+JiraTask.msg(file_name,line_num(),Message.error_type,Message.error)
+JiraTask.msg(file_name,line_num(),Message.display_type,Message.display)
 
 
 

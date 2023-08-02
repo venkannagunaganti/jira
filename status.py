@@ -1,7 +1,4 @@
-import JiraTask
-import Message
-import inspect
-import os
+import JiraTask,Message,inspect,os
 
 #fetching the path and file name
 path=os.path.abspath(__file__)
@@ -15,7 +12,7 @@ def line_num():
     return i.lineno
 
 #functions calling
-JiraTask.LogFile.create_file(file_name)
+JiraTask.create_log_file(file_name)
 JiraTask.msg(file_name,line_num(),
              Message.critical_type,Message.critical)
 JiraTask.msg(file_name,line_num(),
@@ -28,6 +25,14 @@ JiraTask.msg(file_name,line_num(),
              Message.error_type,Message.error)
 JiraTask.msg(file_name,line_num(),
              Message.display_type,Message.display)
+JiraTask.msg(file_name,line_num(),
+             Message.critical_type,Message.critical)
+JiraTask.msg(file_name,line_num(),
+             Message.debug_type,Message.debug)
+JiraTask.msg(file_name,line_num(),
+             Message.warning_type,Message.warning)
+
+
 
 
 

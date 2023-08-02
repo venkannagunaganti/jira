@@ -1,17 +1,22 @@
-import os.path
+import os.path,Message
 from datetime import datetime
 from pathlib import Path
-import Message
+
 #Declaring global variables
 log_file=""
 p=os.path.abspath(__file__)
 path=Path(p).parent
 path=str(path)+"\\"
 time_stamp=""
-class LogFile:
-#Creating a new Log file using file name
-  @staticmethod
-  def create_file(filename):
+i=""
+#   Function name:create_log_file
+#   Author: venkanna gunaganti
+#   Description:creating logfile using caller filename
+#. Input parameters : filename.
+#   Date created: 02/08/2023
+#   Date last modified & Changes done: 02/08/2023
+@staticmethod
+def create_log_file(filename):
       global path
       name=filename.split(".")
       x=name[0]
@@ -20,22 +25,34 @@ class LogFile:
       msg = ''
       with open(path, 'w') as file:
          file.write(msg)
+class LogFile:
+#   Function name:write_to_log_file
+#   Author: venkanna gunaganti
+#   Description:writing to the created log file
+#. Input parameters : filename, line no, message type , message.
+#   Date created: 02/08/2023
+#   Date last modified & Changes done: 02/08/2023
 
-
-#writing to the log file
   @staticmethod
   def write_to_log_file(file_name,line_number,msg_type,msg):
         p = Path(path)
-        # global time_stamp
+        global time_stamp
         time_stamp = datetime.fromtimestamp(p.stat().st_mtime).isoformat()
 
         with open(path,'a+') as file:
 
             file.write(f"{time_stamp} {file_name}:{line_number} {msg_type}:{msg}\n")
 
-#recieving from the user
+#   Function name:msg
+#   Author: venkanna gunaganti
+#   Description:funtion for calling different Error message types
+#. Input parameters :file_name,line_no,msg_type,msg.
+#How to invoke:call this msg function and include the required parameters
+#   Date created: 02/08/2023
+#   Date last modified & Changes done: 02/08/2023
 @staticmethod
 def msg(file_name,line_no,msg_type,msg):
+
     global log_file
     log_file=file_name
     match msg_type:
